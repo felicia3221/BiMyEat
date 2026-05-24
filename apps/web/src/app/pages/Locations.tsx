@@ -17,14 +17,22 @@ export function Locations() {
       <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
 
       {/* Floating Food Emojis - Subtle and Not Too Many */}
-      <div className="absolute top-24 right-16 text-5xl opacity-10 animate-float">🍜</div>
-      <div className="absolute top-1/3 left-12 text-4xl opacity-10 animate-float" style={{ animationDelay: '0.8s' }}>🍕</div>
-      <div className="absolute bottom-32 right-24 text-5xl opacity-10 animate-float" style={{ animationDelay: '1.5s' }}>🥤</div>
-      <div className="absolute bottom-1/4 left-20 text-4xl opacity-10 animate-float" style={{ animationDelay: '2.2s' }}>🍱</div>
-      <div className="absolute top-1/2 right-32 text-4xl opacity-8 animate-float" style={{ animationDelay: '3s' }}>🍔</div>
+      <div className="absolute top-24 right-16 text-5xl opacity-20 animate-float">🍜</div>
+      <div className="absolute top-1/3 left-12 text-4xl opacity-20 animate-float" style={{ animationDelay: '0.8s' }}>🍕</div>
+      <div className="absolute bottom-32 right-24 text-5xl opacity-20 animate-float" style={{ animationDelay: '1.5s' }}>🥤</div>
+      <div className="absolute bottom-1/4 left-20 text-4xl opacity-20 animate-float" style={{ animationDelay: '2.2s' }}>🍱</div>
+      <div className="absolute top-1/2 right-32 text-4xl opacity-20 animate-float" style={{ animationDelay: '3s' }}>🍔</div>
 
       {/* Header */}
       <header className="relative bg-white/70 backdrop-blur-md border-b border-gray-100">
+        <div className="relative w-full h-64 overflow-hidden rounded-b-3xl">
+          <img
+            src="/kantin_binus.jpg"
+            alt="Food banner"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#faf9f7]/90" />
+        </div>
         <div className="mx-auto max-w-7xl px-6 py-16">
           {/* User Profile - Top Right */}
           {user && (
@@ -83,6 +91,13 @@ export function Locations() {
           </div>
         </div>
       </header>
+
+      {/*  decorative wave divider */}
+      <div className="relative -mt-8 z-10">
+        <svg viewBox="0 0 1440 60" className="w-full fill-[#faf9f7]">
+          <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" />
+        </svg>
+      </div>
 
       {/* Main Content */}
       <main className="relative mx-auto max-w-6xl px-6 py-16">
@@ -220,6 +235,20 @@ export function Locations() {
             <div className="text-sm text-gray-600 font-medium">Waktu Antri</div>
           </div>
         </div>
+
+          {/* Food Photo Grid */}
+          <div className="mt-16 grid grid-cols-4 gap-3 max-w-4xl mx-auto rounded-3xl overflow-hidden">
+            {[
+              'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&q=80', // nasi goreng
+              'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400&q=80', // mie
+              'https://images.unsplash.com/photo-1555126634-323283e090fa?w=400&q=80', // drinks
+              'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400&q=80', // snacks
+            ].map((url, i) => (
+              <div key={i} className="aspect-square overflow-hidden">
+                <img src={url} alt="food" className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
+              </div>
+            ))}
+          </div>
       </main>
     </div>
   );
