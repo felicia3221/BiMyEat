@@ -26,6 +26,12 @@ export function Locations() {
       <div className="absolute top-2/3 right-1/3 text-4xl opacity-20 animate-float" style={{ animationDelay: '1.2s' }}>🧋</div>
       <div className="absolute top-1/2 left-1/3 text-4xl opacity-20 animate-float" style={{ animationDelay: '2.8s' }}>🍗</div>
       <div className="absolute bottom-1/3 right-16 text-4xl opacity-20 animate-float" style={{ animationDelay: '3.5s' }}>🥗</div>
+      <div className="absolute top-1/3 right-1/4 text-3xl opacity-20 animate-float" style={{ animationDelay: '1.8s' }}>🍩</div>
+      <div className="absolute bottom-1/2 left-1/2 text-3xl opacity-20 animate-float" style={{ animationDelay: '4s' }}>🌮</div>
+      <div className="absolute top-3/4 left-1/3 text-4xl opacity-20 animate-float" style={{ animationDelay: '2.5s' }}>🍣</div>
+      <div className="absolute top-1/4 right-1/3 text-3xl opacity-20 animate-float" style={{ animationDelay: '0.3s' }}>🥙</div>
+      <div className="absolute bottom-1/4 right-1/2 text-4xl opacity-20 animate-float" style={{ animationDelay: '3.8s' }}>🍦</div>
+      <div className="absolute top-2/3 left-1/4 text-3xl opacity-20 animate-float" style={{ animationDelay: '1s' }}>🥐</div>
       
       {/* Header */}
       <header
@@ -191,30 +197,8 @@ export function Locations() {
           ))}
         </div>
 
-        {/* Fun Stats Section */}
-        <div className="mt-20 grid grid-cols-3 gap-8 max-w-3xl mx-auto animate-fade-up" style={{ animationDelay: '0.7s' }}>
-          <div className="text-center">
-            <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500 mb-2">
-              6+
-            </div>
-            <div className="text-sm text-gray-600 font-medium">Kantin Tersedia</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500 mb-2">
-              50+
-            </div>
-            <div className="text-sm text-gray-600 font-medium">Menu Pilihan</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-pink-500 mb-2">
-              0
-            </div>
-            <div className="text-sm text-gray-600 font-medium">Waktu Antri</div>
-          </div>
-        </div>
-
         {/* Stats Section */}
-        <div className="mt-20 grid grid-cols-3 gap-8 max-w-3xl mx-auto animate-fade-up" style={{ animationDelay: '0.7s' }}>
+        <div className="mt-20 grid grid-cols-2 gap-8 max-w-3xl mx-auto animate-fade-up" style={{ animationDelay: '0.7s' }}>
           <div className="text-center">
             <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500 mb-2">6+</div>
             <div className="text-sm text-gray-600 font-medium">Kantin Tersedia</div>
@@ -222,10 +206,6 @@ export function Locations() {
           <div className="text-center">
             <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500 mb-2">50+</div>
             <div className="text-sm text-gray-600 font-medium">Menu Pilihan</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-pink-500 mb-2">0</div>
-            <div className="text-sm text-gray-600 font-medium">Waktu Antri</div>
           </div>
         </div>
 
