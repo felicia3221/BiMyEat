@@ -46,8 +46,8 @@ export function Locations() {
 
           {/* Hanya logo + badge, tulisan deskripsi dipindah ke bawah */}
           <div className="text-center animate-fade-in">
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full mb-6 border border-white/30">
-              <Sparkles className="h-4 w-4 text-white" />
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-100 via-purple-100 to-blue-100 px-6 py-2 rounded-full mb-6 border border-purple-200/50">
+              <Sparkles className="h-4 w-4 text-purple-500" />
               <span className="text-sm font-medium text-purple-700">Pre-Order Makanan Tanpa Antre</span>
             </div>
 
@@ -59,7 +59,7 @@ export function Locations() {
       </header>
 
       {/* Tulisan deskripsi dipindah ke sini, di bawah foto */}
-      <div className="bg-white text-center px-6 py-8 border-b border-gray-100">
+      <div className="text-center px-6 py-8">
         <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
           Pilih lokasi kantin favoritmu dan nikmati kemudahan pesan makan tanpa antri ✨
         </p>
