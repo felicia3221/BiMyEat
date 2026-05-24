@@ -22,7 +22,7 @@ import {
 
 export function Rewards() {
   const navigate = useNavigate();
-  const { user } = useUser();
+  const { user, claimedVouchers, redeemPoints } = useUser();
   const pointsNeeded = 100;
   const currentPoints = user?.points || 0;
   const progressPercentage = (currentPoints / pointsNeeded) * 100;
@@ -36,30 +36,6 @@ export function Rewards() {
   if (!user) {
     return null;
   }
-
-  // Mock vouchers
-  const vouchers = [
-    {
-      id: 1,
-      title: '10% OFF Discount',
-      description: 'Valid untuk semua menu',
-      status: 'claimed',
-      expiresAt: '2026-06-14',
-      code: 'REWARD10',
-      usedAt: undefined,
-      pointsCost: undefined,
-    },
-    {
-      id: 2,
-      title: '15% OFF Discount',
-      description: 'Minimum pembelian 50rb',
-      status: 'available',
-      expiresAt: '2026-07-14',
-      code: 'REWARD15',
-      pointsCost: 150,
-      usedAt: undefined,
-    },
-  ];
 
   // Calculate total earned (example: current + redeemed)
   const totalEarned = currentPoints + 300; // Mock data: assume 300 points already redeemed
@@ -146,14 +122,7 @@ export function Rewards() {
                     ? '100 poin sudah tercapai! 🎉'
                     : `${progressPercentage.toFixed(0)}% menuju 100 poin`}
                 </p>
-              </div>
-
-              <div className="space-y-2">
-                <Progress value={progressPercentage} className="h-3" />
-                <p className="text-xs text-center text-gray-500">
-                  {progressPercentage.toFixed(0)}% menuju 100 poin berikutnya
-                </p>
-              </div>
+              </div>     
             </div>
 
             <div className="grid grid-cols-2 gap-4 pt-4">
@@ -206,7 +175,15 @@ export function Rewards() {
                         className="rounded-xl"
                         disabled={currentPoints < 100}
                         onClick={() => {
-                          toast.success('Voucher 10% OFF berhasil ditukar! 🎉');
+                          const success = redeemPoints(100, {
+                            id: 'voucher-10',
+                            title: 'Voucher 10% OFF',
+                            description: 'Valid untuk semua menu',
+                            code: 'REWARD10',
+                            discount: 10,
+                          });
+                          if (success) toast.success('Voucher 10% OFF berhasil ditukar! 🎉');
+                          else toast.error('Poin tidak cukup');
                         }}
                       >
                         {currentPoints >= 100 ? 'Tukar' : `${currentPoints}/100`}
@@ -238,7 +215,15 @@ export function Rewards() {
                         className="rounded-xl"
                         disabled={currentPoints < 150}
                         onClick={() => {
-                          toast.success('Voucher 15% OFF berhasil ditukar! 🎉');
+                          const success = redeemPoints(150, {
+                            id: 'voucher-15',
+                            title: 'Voucher 15% OFF',
+                            description: 'Minimum pembelian 50rb',
+                            code: 'REWARD15',
+                            discount: 15,
+                          });
+                          if (success) toast.success('Voucher 15% OFF berhasil ditukar! 🎉');
+                          else toast.error('Poin tidak cukup');
                         }}
                       >
                         {currentPoints >= 150 ? 'Tukar' : `${currentPoints}/150`}
@@ -258,76 +243,50 @@ export function Rewards() {
             Voucher Kamu
           </h2>
 
-          <div className="grid gap-4">
-            {vouchers.map((voucher, index) => (
-              <Card
-                key={voucher.id}
-                className={`rounded-3xl bg-white/80 backdrop-blur-md border-2 border-dashed shadow-sm animate-fade-up ${
-                  voucher.status === 'claimed'
-                    ? 'border-purple-300 bg-gradient-to-r from-purple-50/50 via-pink-50/50 to-blue-50/50'
-                    : voucher.status === 'used'
-                    ? 'border-gray-300 opacity-60'
-                    : 'border-blue-300 bg-blue-50/30'
-                }`}
-                style={{ animationDelay: `${0.3 + index * 0.05}s` }}
-              >
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <h3 className="text-xl font-semibold text-gray-900">{voucher.title}</h3>
-                        {voucher.status === 'claimed' && (
+          {claimedVouchers.length === 0 ? (
+            <Card className="rounded-3xl bg-white/80 backdrop-blur-md border border-gray-100 shadow-sm">
+              <CardContent className="py-12 text-center">
+                <Gift className="w-10 h-10 text-gray-300 mx-auto mb-3" />
+                <p className="text-gray-500">Belum ada voucher. Tukar poinmu di atas!</p>
+              </CardContent>
+            </Card>
+          ) : (
+            <div className="grid gap-4">
+              {claimedVouchers.map((voucher) => (
+                <Card
+                  key={voucher.id}
+                  className="rounded-3xl bg-white/80 backdrop-blur-md border-2 border-dashed border-purple-300 bg-gradient-to-r from-purple-50/50 via-pink-50/50 to-blue-50/50 shadow-sm"
+                >
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <h3 className="text-xl font-semibold text-gray-900">{voucher.title}</h3>
                           <Badge className="bg-gradient-to-r from-purple-400 to-pink-400 text-white border-0">
                             <CheckCircle2 className="w-3 h-3 mr-1" />
                             Claimed
                           </Badge>
-                        )}
-                        {voucher.status === 'used' && (
-                          <Badge variant="secondary" className="bg-gray-200 text-gray-600 border-0">Terpakai</Badge>
-                        )}
-                        {voucher.status === 'available' && (
-                          <Badge variant="outline" className="border-blue-400 text-blue-700 bg-blue-50">
-                            Tersedia
-                          </Badge>
-                        )}
-                      </div>
-                      <p className="text-sm text-gray-600 mb-3">{voucher.description}</p>
-
-                      {voucher.status !== 'used' && (
+                        </div>
+                        <p className="text-sm text-gray-600 mb-3">{voucher.description}</p>
                         <div className="flex items-center gap-4 text-sm">
                           <div className="font-mono bg-white px-3 py-1.5 rounded-xl border border-gray-200 text-gray-900">
                             {voucher.code}
                           </div>
-                          {voucher.expiresAt && (
-                            <div className="flex items-center gap-1 text-gray-500">
-                              <Clock className="w-4 h-4" />
-                              Berlaku hingga {new Date(voucher.expiresAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
-                            </div>
-                          )}
+                          <div className="flex items-center gap-1 text-gray-500">
+                            <Clock className="w-4 h-4" />
+                            Diklaim {new Date(voucher.claimedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
+                          </div>
                         </div>
-                      )}
-                      {voucher.status === 'used' && voucher.usedAt && (
-                        <div className="text-sm text-gray-500">
-                          Dipakai pada {new Date(voucher.usedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
-                        </div>
-                      )}
-                    </div>
-
-                    {voucher.status === 'claimed' && (
+                      </div>
                       <Button className="rounded-2xl bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200 text-gray-800 font-medium hover:opacity-90 transition-all shadow-sm">
                         Pakai di Checkout
                       </Button>
-                    )}
-                    {voucher.status === 'available' && voucher.pointsCost && (
-                      <Button variant="outline" disabled={currentPoints < voucher.pointsCost} className="rounded-2xl">
-                        Claim {voucher.pointsCost} pts
-                      </Button>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Point History */}
