@@ -24,16 +24,18 @@ export function Locations() {
       <div className="absolute top-1/2 right-32 text-4xl opacity-20 animate-float" style={{ animationDelay: '3s' }}>🍔</div>
 
       {/* Header */}
-      <header className="relative bg-white/70 backdrop-blur-md border-b border-gray-100">
-        <div className="relative w-full h-64 overflow-hidden rounded-b-3xl">
-          <img
-            src="/kantin_binus.jpg"
-            alt="Food banner"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#faf9f7]/90" />
-        </div>
-        <div className="mx-auto max-w-7xl px-6 py-16">
+      <header
+        className="relative border-b border-gray-100 overflow-hidden"
+        style={{
+          backgroundImage: 'url(/kantin_binus.jpeg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        {/* Overlay supaya tulisan terbaca */}
+        <div className="absolute inset-0 bg-white/60 backdrop-blur-sm" />
+
+        <div className="relative mx-auto max-w-7xl px-6 py-16">
           {/* User Profile - Top Right */}
           {user && (
             <div className="absolute top-6 right-6 animate-fade-in">
@@ -80,11 +82,11 @@ export function Locations() {
               <Sparkles className="h-4 w-4 text-purple-500" />
               <span className="text-sm font-medium text-purple-700">Pre-Order Makanan Tanpa Antre</span>
             </div>
-            
+
             <h1 className="text-6xl font-extrabold tracking-tight text-gray-900 mb-4">
               BiMy<span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500">Eat</span>
             </h1>
-            
+
             <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
               Pilih lokasi kantin favoritmu dan nikmati kemudahan pesan makan tanpa antri ✨
             </p>
