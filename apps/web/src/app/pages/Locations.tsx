@@ -30,11 +30,11 @@ export function Locations() {
           backgroundImage: 'url(/kantin_binus.jpeg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          minHeight: '320px',
+          minHeight: '450px',
         }}
       >
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/40" />
+        {/* <div className="absolute inset-0 bg-black/40" /> */}
 
         <div className="relative mx-auto max-w-7xl px-6 py-16">
           {/* User Profile - Top Right */}
@@ -52,7 +52,7 @@ export function Locations() {
             </div>
 
             <h1 className="text-6xl font-extrabold tracking-tight text-white mb-4 drop-shadow-lg">
-              BiMy<span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300">Eat</span>
+              BiMy<span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500">Eat</span>
             </h1>
           </div>
         </div>
