@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { useUser } from '../context/UserContext';
+import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
 
 export function Locations() {
   const { user, logout } = useUser();
@@ -198,13 +199,17 @@ export function Locations() {
         </div>
 
         {/* Stats Section */}
-        <div className="mt-20 grid grid-cols-2 gap-8 max-w-3xl mx-auto animate-fade-up" style={{ animationDelay: '0.7s' }}>
+        <div className="mt-20 grid grid-cols-3 gap-8 max-w-3xl mx-auto animate-fade-up" style={{ animationDelay: '0.7s' }}>
           <div className="text-center">
-            <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500 mb-2">6+</div>
+            <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500 mb-2">2</div>
+            <div className="text-sm text-gray-600 font-medium">Lokasi Kantin</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500 mb-2">6+</div>
             <div className="text-sm text-gray-600 font-medium">Kantin Tersedia</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500 mb-2">50+</div>
+            <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-pink-500 mb-2">50+</div>
             <div className="text-sm text-gray-600 font-medium">Menu Pilihan</div>
           </div>
         </div>
@@ -221,7 +226,7 @@ export function Locations() {
               <Card className="group rounded-3xl bg-white/80 backdrop-blur-md border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer">
                 <CardContent className="p-5 flex items-center gap-4">
                   <div className="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <span className="text-2xl">💬</span>
+                    <FaWhatsapp className="text-2xl text-green-500" />
                   </div>
                   <div>
                     <p className="font-semibold text-gray-900">WhatsApp</p>
@@ -235,7 +240,7 @@ export function Locations() {
               <Card className="group rounded-3xl bg-white/80 backdrop-blur-md border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer">
                 <CardContent className="p-5 flex items-center gap-4">
                   <div className="w-12 h-12 rounded-2xl bg-pink-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <span className="text-2xl">📸</span>
+                    <FaInstagram className="text-2xl text-pink-500" />
                   </div>
                   <div>
                     <p className="font-semibold text-gray-900">Instagram</p>
