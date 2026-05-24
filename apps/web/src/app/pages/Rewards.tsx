@@ -278,7 +278,10 @@ export function Rewards() {
                           </div>
                         </div>
                       </div>
-                      <Button className="rounded-2xl bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200 text-gray-800 font-medium hover:opacity-90 transition-all shadow-sm">
+                      <Button
+                        onClick={() => navigate('/checkout')}
+                        className="rounded-2xl bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200 text-gray-800 font-medium hover:opacity-90 transition-all shadow-sm"
+                      >
                         Pakai di Checkout
                       </Button>
                     </div>

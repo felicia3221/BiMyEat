@@ -12,11 +12,12 @@ import { toast } from 'sonner';
 
 export function Checkout() {
   const { cart, getCartTotal, createOrder } = useCart();
-  const { user, addPoints } = useUser();
+  const { user, addPoints,  claimedVouchers, useVoucher } = useUser();
   const navigate = useNavigate();
   const [pickupTime, setPickupTime] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
   const [priorityOrderEnabled, setPriorityOrderEnabled] = useState(false);
+  const [selectedVoucher, setSelectedVoucher] = useState<string | null>(null);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('id-ID', {
@@ -39,7 +40,9 @@ export function Checkout() {
   const priorityFee = getPriorityFee();
   const subtotal = getCartTotal();
   const platformFee = 2000;
-  const total = subtotal + platformFee + priorityFee;
+  const activeVoucher = claimedVouchers.find(v => v.code === selectedVoucher);
+  const discountAmount = activeVoucher ? Math.floor((subtotal * activeVoucher.discount) / 100) : 0;
+  const total = subtotal + platformFee + priorityFee - discountAmount;
 
   // Redirect if not logged in
   useEffect(() => {
@@ -106,11 +109,13 @@ export function Checkout() {
       return;
     }
 
-    // Calculate points earned (1 point per 1000 rupiah)
     const pointsEarned = Math.floor(total / 1000);
-
-    // Add points to user
     addPoints(pointsEarned);
+
+    // Hapus voucher yang dipakai
+    if (selectedVoucher) {
+      useVoucher(selectedVoucher);
+    }
 
     createOrder(pickupTime, paymentMethod);
     toast.success(`Pesanan berhasil! Kamu dapat ${pointsEarned} poin 🎉`);
@@ -238,7 +243,10 @@ export function Checkout() {
                               <p className="text-sm text-purple-700">
                                 <span className="font-semibold">Pro Members dapat Priority Order GRATIS!</span>
                                 {' '}
-                                <button onClick={() => navigate('/pricing')} className="text-purple-600 underline font-medium">
+                                <button 
+                                  onClick={() => navigate('/pricing', { state: { from: '/checkout' } })} 
+                                  className="text-purple-600 underline font-medium"
+                                >
                                   Upgrade sekarang
                                 </button>
                               </p>
@@ -423,6 +431,46 @@ export function Checkout() {
                   <Sparkles className="w-3 h-3 inline mr-1" />
                   Kamu akan dapat <span className="font-semibold">{Math.floor(total / 1000)} poin</span> dari order ini
                 </div>
+
+                {/* Voucher Section */}
+                {claimedVouchers.length > 0 && (
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium text-gray-700">Voucher Kamu</p>
+                    {claimedVouchers.map((voucher) => (
+                      <button
+                        key={voucher.code}
+                        onClick={() => setSelectedVoucher(
+                          selectedVoucher === voucher.code ? null : voucher.code
+                        )}
+                        className={`w-full flex items-center justify-between p-3 rounded-2xl border-2 transition-all text-sm ${
+                          selectedVoucher === voucher.code
+                            ? 'border-purple-400 bg-purple-50 text-purple-700'
+                            : 'border-dashed border-gray-300 hover:border-purple-300 text-gray-600'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg">🎟️</span>
+                          <div className="text-left">
+                            <p className="font-medium">{voucher.title}</p>
+                            <p className="text-xs text-gray-500">{voucher.code}</p>
+                          </div>
+                        </div>
+                        {selectedVoucher === voucher.code
+                          ? <span className="text-xs font-semibold text-purple-600">- {formatPrice(discountAmount)}</span>
+                          : <span className="text-xs text-gray-400">Pakai</span>
+                        }
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {/* Tampilkan baris diskon kalau voucher aktif */}
+                {activeVoucher && (
+                  <div className="flex justify-between text-sm text-green-600">
+                    <span>Diskon {activeVoucher.discount}%</span>
+                    <span>- {formatPrice(discountAmount)}</span>
+                  </div>
+                )}
 
                 <div className="border-t border-gray-100 pt-4 mt-4 flex justify-between text-lg font-semibold text-gray-900">
                   <span>Total</span>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate, useLocation } from 'react-router';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -82,7 +82,13 @@ export function Pricing() {
     upgradeMembership(selectedPlan!.id);
     toast.success('Pembayaran berhasil! Selamat datang Pro Member 🎉');
     setSelectedPlan(null);
-    navigate('/');
+
+    const referrer = document.referrer;
+    if (referrer.includes('/checkout')) {
+      navigate('/checkout');
+    } else {
+      navigate('/');
+    }
   };
 
   return (
