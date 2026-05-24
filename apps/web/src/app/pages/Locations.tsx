@@ -33,7 +33,7 @@ export function Locations() {
         }}
       >
         {/* Overlay supaya tulisan terbaca */}
-        <div className="absolute inset-0 bg-white/60 backdrop-blur-sm" />
+        {/* <div className="absolute inset-0 bg-white/60 backdrop-blur-sm" /> */}
 
         <div className="relative mx-auto max-w-7xl px-6 py-16">
           {/* User Profile - Top Right */}
