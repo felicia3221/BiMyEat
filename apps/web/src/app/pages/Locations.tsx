@@ -22,7 +22,11 @@ export function Locations() {
       <div className="absolute bottom-32 right-24 text-5xl opacity-20 animate-float" style={{ animationDelay: '1.5s' }}>🥤</div>
       <div className="absolute bottom-1/4 left-20 text-4xl opacity-20 animate-float" style={{ animationDelay: '2.2s' }}>🍱</div>
       <div className="absolute top-1/2 right-32 text-4xl opacity-20 animate-float" style={{ animationDelay: '3s' }}>🍔</div>
-
+      <div className="absolute top-1/4 left-1/4 text-4xl opacity-20 animate-float" style={{ animationDelay: '0.5s' }}>🍛</div>
+      <div className="absolute top-2/3 right-1/3 text-4xl opacity-20 animate-float" style={{ animationDelay: '1.2s' }}>🧋</div>
+      <div className="absolute top-1/2 left-1/3 text-4xl opacity-20 animate-float" style={{ animationDelay: '2.8s' }}>🍗</div>
+      <div className="absolute bottom-1/3 right-16 text-4xl opacity-20 animate-float" style={{ animationDelay: '3.5s' }}>🥗</div>
+      
       {/* Header */}
       <header
         className="relative border-b border-gray-100 overflow-hidden"
@@ -61,7 +65,7 @@ export function Locations() {
       {/* Tulisan deskripsi dipindah ke sini, di bawah foto */}
       <div className="text-center px-6 py-8">
         <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          Pilih lokasi kantin favoritmu dan nikmati kemudahan pesan makan tanpa antri ✨
+          Pilih lokasi kantin favoritmu dan nikmati kemudahan pesan makan tanpa antri 𑣲⋆
         </p>
       </div>
 
@@ -73,7 +77,7 @@ export function Locations() {
       </div> */}
 
       {/* Main Content */}
-      <main className="relative mx-auto max-w-6xl px-6 py-10">
+      <main className="relative mx-auto max-w-6xl px-6 py-9">
         {/* Quick Access - Membership Features */}
         <div className="mb-16 animate-fade-up" style={{ animationDelay: '0.1s' }}>
           <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
@@ -209,19 +213,59 @@ export function Locations() {
           </div>
         </div>
 
-          {/* Food Photo Grid */}
-          <div className="mt-16 grid grid-cols-4 gap-3 max-w-4xl mx-auto rounded-3xl overflow-hidden">
-            {[
-              'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&q=80', // nasi goreng
-              'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400&q=80', // mie
-              'https://images.unsplash.com/photo-1555126634-323283e090fa?w=400&q=80', // drinks
-              'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400&q=80', // snacks
-            ].map((url, i) => (
-              <div key={i} className="aspect-square overflow-hidden">
-                <img src={url} alt="food" className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
-              </div>
-            ))}
+        {/* Stats Section */}
+        <div className="mt-20 grid grid-cols-3 gap-8 max-w-3xl mx-auto animate-fade-up" style={{ animationDelay: '0.7s' }}>
+          <div className="text-center">
+            <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500 mb-2">6+</div>
+            <div className="text-sm text-gray-600 font-medium">Kantin Tersedia</div>
           </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500 mb-2">50+</div>
+            <div className="text-sm text-gray-600 font-medium">Menu Pilihan</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-pink-500 mb-2">0</div>
+            <div className="text-sm text-gray-600 font-medium">Waktu Antri</div>
+          </div>
+        </div>
+
+        {/* Contact Person */}
+        <div className="mt-16 mb-8 animate-fade-up" style={{ animationDelay: '0.8s' }}>
+          <div className="text-center mb-6">
+            <h3 className="text-xl font-bold text-gray-900">Hubungi Kami</h3>
+            <p className="text-sm text-gray-500 mt-1">Ada pertanyaan? Reach out ke kita!</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer">
+              <Card className="group rounded-3xl bg-white/80 backdrop-blur-md border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+                <CardContent className="p-5 flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <span className="text-2xl">💬</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-900">WhatsApp</p>
+                    <p className="text-sm text-gray-500">+62 812-3456-7890</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </a>
+
+            <a href="https://instagram.com/bimyeat" target="_blank" rel="noopener noreferrer">
+              <Card className="group rounded-3xl bg-white/80 backdrop-blur-md border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+                <CardContent className="p-5 flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-pink-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <span className="text-2xl">📸</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-900">Instagram</p>
+                    <p className="text-sm text-gray-500">@bimyeat</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </a>
+          </div>
+        </div>
       </main>
     </div>
   );
