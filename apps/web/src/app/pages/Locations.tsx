@@ -30,7 +30,7 @@ export function Locations() {
           backgroundImage: 'url(/kantin_binus.jpeg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          minHeight: '450px',
+          minHeight: '320px',
         }}
       >
         {/* Overlay */}
