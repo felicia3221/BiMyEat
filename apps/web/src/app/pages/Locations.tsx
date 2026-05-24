@@ -59,7 +59,7 @@ export function Locations() {
       </header>
 
       {/* Tulisan deskripsi dipindah ke sini, di bawah foto */}
-      <div className="text-center px-6 py-8">
+      <div className="text-center px-6 py-2">
         <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
           Pilih lokasi kantin favoritmu dan nikmati kemudahan pesan makan tanpa antri ✨
         </p>
@@ -73,7 +73,7 @@ export function Locations() {
       </div> */}
 
       {/* Main Content */}
-      <main className="relative mx-auto max-w-6xl px-6 py-12">
+      <main className="relative mx-auto max-w-6xl px-6 py-8">
         {/* Quick Access - Membership Features */}
         <div className="mb-16 animate-fade-up" style={{ animationDelay: '0.1s' }}>
           <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
