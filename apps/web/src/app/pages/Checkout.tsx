@@ -238,9 +238,9 @@ export function Checkout() {
                               <p className="text-sm text-purple-700">
                                 <span className="font-semibold">Pro Members dapat Priority Order GRATIS!</span>
                                 {' '}
-                                <a href="/pricing" className="underline hover:text-purple-800">
+                                <button onClick={() => navigate('/pricing')} className="text-purple-600 underline font-medium">
                                   Upgrade sekarang
-                                </a>
+                                </button>
                               </p>
                             </div>
                           </div>

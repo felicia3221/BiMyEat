@@ -7,6 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { Progress } from '../components/ui/progress';
 import { Badge } from '../components/ui/badge';
 import { Separator } from '../components/ui/separator';
+import { toast } from 'sonner';
+
 import {
   Trophy,
   Gift,
@@ -44,6 +46,8 @@ export function Rewards() {
       status: 'claimed',
       expiresAt: '2026-06-14',
       code: 'REWARD10',
+      usedAt: undefined,
+      pointsCost: undefined,
     },
     {
       id: 2,
@@ -53,14 +57,7 @@ export function Rewards() {
       expiresAt: '2026-07-14',
       code: 'REWARD15',
       pointsCost: 150,
-    },
-    {
-      id: 3,
-      title: 'Free Drink',
-      description: 'Minuman dingin gratis',
-      status: 'used',
-      usedAt: '2026-05-10',
-      code: 'FREEDRINK',
+      usedAt: undefined,
     },
   ];
 
@@ -129,13 +126,26 @@ export function Rewards() {
             <div className="space-y-3">
               <div className="flex items-end justify-between">
                 <div>
-                  <div className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500">{currentPoints}</div>
+                  <div className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500">
+                    {currentPoints}
+                  </div>
                   <div className="text-sm text-gray-600">poin tersedia</div>
                 </div>
-                <div className="text-right">
-                  <div className="text-2xl font-semibold text-gray-900">{pointsNeeded - currentPoints}</div>
-                  <div className="text-sm text-gray-600">poin lagi</div>
-                </div>
+                {currentPoints < pointsNeeded && (
+                  <div className="text-right">
+                    <div className="text-2xl font-semibold text-gray-900">{pointsNeeded - currentPoints}</div>
+                    <div className="text-sm text-gray-600">poin lagi</div>
+                  </div>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <Progress value={Math.min(progressPercentage, 100)} className="h-3" />
+                <p className="text-xs text-center text-gray-500">
+                  {currentPoints >= pointsNeeded
+                    ? '100 poin sudah tercapai! 🎉'
+                    : `${progressPercentage.toFixed(0)}% menuju 100 poin`}
+                </p>
               </div>
 
               <div className="space-y-2">
@@ -169,22 +179,16 @@ export function Rewards() {
 
         {/* Redemption Section */}
         <div className="space-y-4 animate-fade-up" style={{ animationDelay: '0.1s' }}>
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold text-gray-900 flex items-center gap-2">
-              <Tag className="w-6 h-6 text-purple-500" />
-              Tukar Poin
-            </h2>
-            <Button
-              disabled={currentPoints < 100}
-              className="rounded-2xl bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200 text-gray-800 font-medium hover:opacity-90 transition-all shadow-sm disabled:opacity-50"
-            >
-              <Gift className="w-4 h-4 mr-2" />
-              Konversi Poin
-            </Button>
-          </div>
+          <h2 className="text-2xl font-semibold text-gray-900 flex items-center gap-2">
+            <Tag className="w-6 h-6 text-purple-500" />
+            Tukar Poin
+          </h2>
 
           <div className="grid md:grid-cols-2 gap-4">
-            <Card className="rounded-3xl bg-white/80 backdrop-blur-md border-2 border-dashed border-purple-300 hover:border-purple-500 transition-colors cursor-pointer shadow-sm hover:shadow-md">
+            {/* Voucher 10% */}
+            <Card className={`rounded-3xl bg-white/80 backdrop-blur-md border-2 border-dashed transition-colors shadow-sm ${
+              currentPoints >= 100 ? 'border-purple-300 hover:border-purple-500 cursor-pointer' : 'border-gray-200 opacity-60'
+            }`}>
               <CardContent className="pt-6">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center flex-shrink-0">
@@ -192,15 +196,20 @@ export function Rewards() {
                   </div>
                   <div className="flex-1">
                     <h3 className="font-semibold mb-1 text-gray-900">Voucher 10% OFF</h3>
-                    <p className="text-sm text-gray-600 mb-3">
-                      Valid untuk semua menu
-                    </p>
+                    <p className="text-sm text-gray-600 mb-3">Valid untuk semua menu</p>
                     <div className="flex items-center justify-between">
                       <Badge variant="secondary" className="bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 border-0">
                         100 poin
                       </Badge>
-                      <Button size="sm" disabled={currentPoints < 100} className="rounded-xl">
-                        Tukar
+                      <Button
+                        size="sm"
+                        className="rounded-xl"
+                        disabled={currentPoints < 100}
+                        onClick={() => {
+                          toast.success('Voucher 10% OFF berhasil ditukar! 🎉');
+                        }}
+                      >
+                        {currentPoints >= 100 ? 'Tukar' : `${currentPoints}/100`}
                       </Button>
                     </div>
                   </div>
@@ -208,23 +217,31 @@ export function Rewards() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-3xl bg-white/80 backdrop-blur-md border-2 border-dashed border-gray-300 hover:border-gray-400 transition-colors opacity-60 shadow-sm">
+            {/* Voucher 15% */}
+            <Card className={`rounded-3xl bg-white/80 backdrop-blur-md border-2 border-dashed transition-colors shadow-sm ${
+              currentPoints >= 150 ? 'border-purple-300 hover:border-purple-500 cursor-pointer' : 'border-gray-200 opacity-60'
+            }`}>
               <CardContent className="pt-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center flex-shrink-0">
-                    <Crown className="w-6 h-6 text-gray-600" />
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center flex-shrink-0">
+                    <Crown className="w-6 h-6 text-purple-600" />
                   </div>
                   <div className="flex-1">
                     <h3 className="font-semibold mb-1 text-gray-900">Voucher 15% OFF</h3>
-                    <p className="text-sm text-gray-600 mb-3">
-                      Minimum pembelian 50rb
-                    </p>
+                    <p className="text-sm text-gray-600 mb-3">Minimum pembelian 50rb</p>
                     <div className="flex items-center justify-between">
-                      <Badge variant="secondary" className="bg-gray-100 text-gray-700 border-0">
+                      <Badge variant="secondary" className="bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 border-0">
                         150 poin
                       </Badge>
-                      <Button size="sm" disabled className="rounded-xl">
-                        {currentPoints}/150
+                      <Button
+                        size="sm"
+                        className="rounded-xl"
+                        disabled={currentPoints < 150}
+                        onClick={() => {
+                          toast.success('Voucher 15% OFF berhasil ditukar! 🎉');
+                        }}
+                      >
+                        {currentPoints >= 150 ? 'Tukar' : `${currentPoints}/150`}
                       </Button>
                     </div>
                   </div>
