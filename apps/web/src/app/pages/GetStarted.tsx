@@ -8,11 +8,13 @@ import { Separator } from '../components/ui/separator';
 import { Crown, Zap, ShieldCheck, Sparkles, ArrowLeft } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import { toast } from 'sonner';
+import { useLocation } from 'react-router';
 
 export function GetStarted() {
   const navigate = useNavigate();
   const { login } = useUser();
   const [isSignIn, setIsSignIn] = useState(true);
+  const location = useLocation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,18 +36,24 @@ export function GetStarted() {
       return;
     }
 
-    // Login/Register user
     login({
       name: formData.name || formData.email.split('@')[0],
       email: formData.email,
       phone: formData.phone || undefined,
       studentId: formData.studentId || undefined,
-      points: 0, // Mulai dari 0 poin
+      points: 0,
       isMember: false,
     });
 
     toast.success(isSignIn ? 'Berhasil masuk!' : 'Akun berhasil dibuat! 🎉');
-    navigate('/');
+    
+    // Kalau datang dari cart, langsung ke checkout
+    const from = location.state?.from;
+    if (from === '/cart') {
+      navigate('/checkout');
+    } else {
+      navigate('/');
+    }
   };
 
   return (

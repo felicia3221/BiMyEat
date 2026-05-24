@@ -4,10 +4,12 @@ import { useCart } from '../context/CartContext';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { Separator } from '../components/ui/separator';
+import { useUser } from '../context/UserContext';
 
 export function Cart() {
   const { cart, removeFromCart, updateQuantity, getCartTotal } = useCart();
   const navigate = useNavigate();
+  const { user } = useUser();
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('id-ID', {
@@ -174,7 +176,13 @@ export function Cart() {
                   <Button
                     className="w-full rounded-2xl bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200 text-gray-800 font-medium hover:opacity-90 transition-all duration-300 shadow-sm"
                     size="lg"
-                    onClick={() => navigate('/checkout')}
+                    onClick={() => {
+                      if (!user) {
+                        navigate('/get-started', { state: { from: '/cart' } });
+                      } else {
+                        navigate('/checkout');
+                      }
+                    }}
                   >
                     Lanjut ke Checkout
                   </Button>
