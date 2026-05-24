@@ -27,7 +27,7 @@ export function Locations() {
       <header
         className="relative border-b border-gray-100 overflow-hidden"
         style={{
-          backgroundImage: 'url(/kantin_binus.jpeg)',
+          backgroundImage: 'url(kantin.jpeg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           minHeight: '320px',
@@ -66,14 +66,14 @@ export function Locations() {
       </div>
 
       {/*  decorative wave divider */}
-      <div className="relative -mt-8 z-10">
+      {/* <div className="relative -mt-8 z-10">
         <svg viewBox="0 0 1440 60" className="w-full fill-[#faf9f7]">
           <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" />
         </svg>
-      </div>
+      </div> */}
 
       {/* Main Content */}
-      <main className="relative mx-auto max-w-6xl px-6 py-16">
+      <main className="relative mx-auto max-w-6xl px-6 py-12">
         {/* Quick Access - Membership Features */}
         <div className="mb-16 animate-fade-up" style={{ animationDelay: '0.1s' }}>
           <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
