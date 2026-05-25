@@ -236,7 +236,11 @@ export function Orders() {
               key={order.id}
               className="overflow-hidden rounded-3xl bg-white/80 backdrop-blur-md border border-gray-100 shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 animate-fade-up cursor-pointer"
               style={{ animationDelay: `${index * 0.1}s` }}
-              onClick={() => setSelectedOrder(order)}
+              onClick={() => {
+                console.log('Clicked order:', order.id);
+                setSelectedOrder(order);
+                console.log('selectedOrder set to:', order.id);
+              }}
             >
               <CardHeader className="pb-4">
                 <div className="flex items-start justify-between">
