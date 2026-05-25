@@ -18,6 +18,7 @@ export function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState('');
   const [priorityOrderEnabled, setPriorityOrderEnabled] = useState(false);
   const [selectedVoucher, setSelectedVoucher] = useState<string | null>(null);
+  const [orderSubmitted, setOrderSubmitted] = useState(false);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('id-ID', {
@@ -93,10 +94,10 @@ export function Checkout() {
 
   // Redirect jika cart kosong
   useEffect(() => {
-    if (cart.length === 0) {
+    if (cart.length === 0 && !orderSubmitted) {
       navigate('/');
     }
-  }, [cart.length, navigate]);
+  }, [cart.length, navigate, orderSubmitted]);
 
   const handleSubmitOrder = () => {
     if (timeSlots.length === 0) return toast.error('Maaf, kantin sudah tutup.');
@@ -117,6 +118,7 @@ export function Checkout() {
       useVoucher(selectedVoucher);
     }
 
+    setOrderSubmitted(true);
     createOrder(pickupTime, paymentMethod);
     toast.success(`Pesanan berhasil! Kamu dapat ${pointsEarned} poin 🎉`);
     navigate('/orders');
