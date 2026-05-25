@@ -83,8 +83,9 @@ export function Pricing() {
     toast.success('Pembayaran berhasil! Selamat datang Pro Member 🎉');
     setSelectedPlan(null);
 
-    const referrer = document.referrer;
-    if (referrer.includes('/checkout')) {
+    const from = sessionStorage.getItem('pricingFrom');
+    sessionStorage.removeItem('pricingFrom');
+    if (from === '/checkout') {
       navigate('/checkout');
     } else {
       navigate('/');

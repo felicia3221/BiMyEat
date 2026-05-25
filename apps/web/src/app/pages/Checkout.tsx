@@ -244,7 +244,10 @@ export function Checkout() {
                                 <span className="font-semibold">Pro Members dapat Priority Order GRATIS!</span>
                                 {' '}
                                 <button 
-                                  onClick={() => navigate('/pricing', { state: { from: '/checkout' } })} 
+                                  onClick={() => {
+                                    sessionStorage.setItem('pricingFrom', '/checkout');
+                                    navigate('/pricing');
+                                  }} 
                                   className="text-purple-600 underline font-medium"
                                 >
                                   Upgrade sekarang
