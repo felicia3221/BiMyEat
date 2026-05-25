@@ -2,13 +2,12 @@ import { useState } from 'react';
 import { ArrowLeft, Clock, CheckCircle2, Package, MapPin, Receipt, X, Download } from 'lucide-react';
 import { Link } from 'react-router';
 import { useCart } from '../context/CartContext';
+import { Order } from '../types'; 
 import { canteens } from '../data/canteens';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Separator } from '../components/ui/separator';
-
-type Order = ReturnType<typeof useCart>['orders'][0];
 
 export function Orders() {
   const { orders } = useCart();

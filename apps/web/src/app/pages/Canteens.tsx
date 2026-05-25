@@ -35,12 +35,15 @@ export function Canteens() {
       <header className="relative bg-white/70 backdrop-blur-md border-b border-gray-100">
         <div className="mx-auto max-w-7xl px-6 py-12">
           <div className="animate-fade-in">
-            <Link to="/">
-              <Button variant="ghost" size="sm" className="mb-6 rounded-xl hover:bg-purple-50 transition-colors">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Pilih Lokasi Lain
-              </Button>
-            </Link>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="mb-6 rounded-xl hover:bg-purple-50 transition-colors"
+              onClick={() => navigate(-1)}
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Pilih Lokasi Lain
+            </Button>
 
             <div className="flex items-center gap-4 mb-4">
               <div className="text-6xl">{location.icon}</div>

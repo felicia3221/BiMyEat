@@ -46,7 +46,7 @@ export function Cart() {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => navigate('/canteen/' + (cart[0]?.canteenId ?? ''))}
+            onClick={() => navigate(-1)}
             className="rounded-xl hover:bg-white/50 animate-fade-in"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
