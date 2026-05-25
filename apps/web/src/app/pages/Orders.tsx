@@ -13,6 +13,9 @@ export function Orders() {
   const { orders } = useCart();
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
 
+  console.log('orders:', orders);
+  console.log('selectedOrder:', selectedOrder);
+
   const getCanteenName = (canteenId: string) => {
     const canteen = canteens.find((c) => c.id === canteenId);
     return canteen?.name || canteenId;
