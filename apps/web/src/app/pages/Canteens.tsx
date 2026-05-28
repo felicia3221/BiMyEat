@@ -32,7 +32,7 @@ export function Canteens() {
       <div className="absolute top-1/2 right-1/4 text-4xl opacity-8 animate-float" style={{ animationDelay: '2s' }}>🍔</div>
 
       {/* Header */}
-      <header className="relative bg-white/70 backdrop-blur-md border-b border-gray-100">
+      <header className="relative z-10 bg-gradient-to-r from-pink-100 via-purple-100 to-blue-100">
         <div className="mx-auto max-w-7xl px-6 py-12">
           <div className="animate-fade-in">
             <Button

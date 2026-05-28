@@ -63,7 +63,7 @@ export function Menu() {
             <Link to="/cart">
               <Button
                 size="lg"
-                className="relative rounded-2xl bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 text-white font-semibold hover:from-pink-500 hover:via-purple-500 hover:to-blue-500 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 shadow-md group/cart"
+                className="relative rounded-2xl bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 text-grey-900 font-semibold hover:from-pink-500 hover:via-purple-500 hover:to-blue-500 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 shadow-md group/cart"
               >
                 <ShoppingCart className="mr-2 h-5 w-5 transform group-hover/cart:scale-110 transition-transform" />
                 Keranjang
@@ -108,25 +108,25 @@ export function Menu() {
         {/* Category Tabs */}
         <div className="mb-12 animate-fade-up" style={{ animationDelay: '0.2s' }}>
           <Tabs defaultValue="semua">
-            <TabsList className="grid w-full max-w-md grid-cols-3 rounded-2xl bg-white/80 backdrop-blur-md border-2 border-purple-100 p-1.5 shadow-sm mx-auto">
+            <TabsList className="grid w-full max-w-md grid-cols-3 rounded-2xl bg-white/80 backdrop-blur-md border-1 border-purple-100 p-1 shadow-sm mx-auto">
               <TabsTrigger
                 value="semua"
                 onClick={() => setCategory('semua')}
-                className="rounded-xl text-gray-600 font-medium transition-all duration-300 data-[state=active]:text-gray-800 data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-200 data-[state=active]:via-purple-200 data-[state=active]:to-blue-200 data-[state=active]:shadow-sm"
+                className="flex items-center gap-1 leading-none rounded-xl text-gray-600 font-medium transition-all duration-300 data-[state=active]:text-gray-800 data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-200 data-[state=active]:via-purple-200 data-[state=active]:to-blue-200 data-[state=active]:shadow-sm"
               >
                 🍽️ Semua
               </TabsTrigger>
               <TabsTrigger
                 value="makanan"
                 onClick={() => setCategory('makanan')}
-                className="rounded-xl text-gray-600 font-medium transition-all duration-300 data-[state=active]:text-gray-800 data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-200 data-[state=active]:via-purple-200 data-[state=active]:to-blue-200 data-[state=active]:shadow-sm"
+                className="flex items-center gap-1 leading-none rounded-xl text-gray-600 font-medium transition-all duration-300 data-[state=active]:text-gray-800 data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-200 data-[state=active]:via-purple-200 data-[state=active]:to-blue-200 data-[state=active]:shadow-sm"
               >
                 🍜 Makanan
               </TabsTrigger>
               <TabsTrigger
                 value="minuman"
                 onClick={() => setCategory('minuman')}
-                className="rounded-xl text-gray-600 font-medium transition-all duration-300 data-[state=active]:text-gray-800 data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-200 data-[state=active]:via-purple-200 data-[state=active]:to-blue-200 data-[state=active]:shadow-sm"
+                className="flex items-center gap-1 leading-none rounded-xl text-gray-600 font-medium transition-all duration-300 data-[state=active]:text-gray-800 data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-200 data-[state=active]:via-purple-200 data-[state=active]:to-blue-200 data-[state=active]:shadow-sm"
               >
                 🥤 Minuman
               </TabsTrigger>

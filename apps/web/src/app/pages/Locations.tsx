@@ -59,10 +59,10 @@ export function Locations() {
           <div className="text-center animate-fade-in">
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-100 via-purple-100 to-blue-100 px-6 py-2 rounded-full mb-6 border border-purple-200/50">
               <Sparkles className="h-4 w-4 text-purple-500" />
-              <span className="text-sm font-medium text-purple-700">Pre-Order Makanan Tanpa Antre</span>
+              <span className="text-sm font-medium text-purple-800">Pre-Order Makanan Tanpa Antre</span>
             </div>
 
-            <h1 className="text-6xl font-extrabold tracking-tight text-grey-900 mb-4">
+            <h1 className="text-6xl font-extrabold tracking-tight text-whit mb-4">
               BiMy<span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500">Eat</span>
             </h1>
           </div>
