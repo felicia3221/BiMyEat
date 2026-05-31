@@ -56,24 +56,26 @@ export function Checkout() {
  // Logika baru untuk slot waktu 30 menitan (Mulai 07:30 - 16:30)
   const generateTimeSlots = () => {
     const slots = [];
-    const now = new Date();
-    let hour = now.getHours();
-    let minute = now.getMinutes();
+    // const now = new Date();
+    // let hour = now.getHours();
+    // let minute = now.getMinutes();
 
-    // Membulatkan ke 30 menit selanjutnya
-    if (minute < 30) {
-      minute = 30;
-    } else {
-      minute = 0;
-      hour += 1;
-    }
+    // // Membulatkan ke 30 menit selanjutnya
+    // if (minute < 30) {
+    //   minute = 30;
+    // } else {
+    //   minute = 0;
+    //   hour += 1;
+    // }
 
-    // Jika memesan sebelum jam buka kantin, slot pengambilan PERTAMA adalah 07:30
-    if (hour < 7 || (hour === 7 && minute < 30)) {
-      hour = 7;
-      minute = 30;
-    }
+    // // Jika memesan sebelum jam buka kantin, slot pengambilan PERTAMA adalah 07:30
+    // if (hour < 7 || (hour === 7 && minute < 30)) {
+    //   hour = 7;
+    //   minute = 30;
+    // }
 
+    let hour = 7;
+    let minute = 30;
     // Generate slot waktu sampai maksimal 16:30
     while (hour < 16 || (hour === 16 && minute <= 30)) {
       const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
