@@ -3,6 +3,8 @@
 
 Aplikasi frontend BiMyEat adalah prototype antar muka pemesanan makanan dan kantin digital yang dibangun menggunakan React + Vite dan diadaptasi dari desain Figma.
 
+- Live demo: https://bi-my-eat.vercel.app?_vercel_share=H6rfvtVcVbZgctkcpVR7WlRNLEOlXiHJ
+
 ---
 
 ## ✨ Fitur
