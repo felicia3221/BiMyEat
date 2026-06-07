@@ -97,4 +97,4 @@ http://localhost:5173
 
 ## 👩‍💻 Developer
 
-Dibuat sebagai project frontend untuk BiMyEat, terinspirasi dari desain Figma dan dibangun dengan stack modern React.
+Dibuat oleh Felicia — Data Science Student @ Binus University
